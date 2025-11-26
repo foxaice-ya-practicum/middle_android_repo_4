@@ -32,10 +32,9 @@ class AppViewModel(
             remoteMediator = NewsRemoteMediator(
                 newsService = newsService,
                 newsDatabase = newsDatabase
-            )
-        ) {
-            newsDatabase.getNewsDao().getNews()
-        }
+            ),
+            pagingSourceFactory = { newsDatabase.getNewsDao().getNews() }
+        )
         return pager.flow
     }
 
