@@ -39,9 +39,9 @@ class WorkManagerServiceImp(
     }
 
     private fun createConstraints(): Constraints {
-        return Constraints(
-            requiredNetworkType = NetworkType.CONNECTED
-        )
+        return Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
     }
 
     private fun createRequest(repeat: Long, delayed: Long): PeriodicWorkRequest {
