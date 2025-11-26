@@ -6,6 +6,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import androidx.paging.compose.LazyPagingItems
 import com.yandex.practicum.middle_homework_4.data.NewsRemoteMediator
 import com.yandex.practicum.middle_homework_4.data.database.NewsDatabase
@@ -35,7 +36,7 @@ class AppViewModel(
             ),
             pagingSourceFactory = { newsDatabase.getNewsDao().getNews() }
         )
-        return pager.flow
+        return pager.flow.cachedIn(viewModelScope)
     }
 
     fun attachPagingItems(paging: LazyPagingItems<News>?) {
